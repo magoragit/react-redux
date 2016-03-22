@@ -1,8 +1,13 @@
-# React starter kit
+# React(redux) starter kit
 
 ## Usage
 
 Base on [React Starterify](https://github.com/Granze/react-starterify/releases/latest)
+
+__Style Guides__
+[AirBnb](https://github.com/airbnb/javascript/tree/master/react)
+[KriaSoft](https://github.com/kriasoft/react-starter-kit/blob/master/docs/react-style-guide.md)
+
 
 __Install the dependencies:__
 
@@ -15,7 +20,3 @@ __Development mode with livereload:__
 __When you are done, create a production ready version of the JS bundle:__
 
 `npm run build`
-
-__Deploy on Github pages with one command:__
-
-`npm run deploy`

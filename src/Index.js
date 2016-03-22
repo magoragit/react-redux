@@ -1,17 +1,24 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route } from 'react-router';
-import App from './components/App';
-import Actions from "./Actions.js";
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
-// Create list of emmett for access to all actions of app
-Actions();
+import configureStore from './store/configureStore'
+import App from './containers/App'
+import AppArticle from './containers/AppArticle'
 
 window.React = React;
 
+const store = configureStore();
+
+
 render(
-  (<Router>
-    <Route path="/" component={App}>
-    </Route>
-  </Router>), document.getElementById('content')
+    <Provider store={store}>
+        <Router>
+            <Route path="/" component={App}></Route>
+            <Route path="/article/:articleId" component={AppArticle}></Route>
+        </Router>
+    </Provider>,
+    document.getElementById('content')
 );
