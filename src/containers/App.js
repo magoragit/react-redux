@@ -9,7 +9,6 @@ import * as userActions from '../actions/User'
 import User from '../components/User.js';
 import Logotype from '../components/Logotype.js';
 import ArticleList from '../components/ArticleList.js';
-import ArticleAdd from '../components/ArticleAdd.js';
 
 class App extends Component {
   render() {
@@ -26,7 +25,6 @@ class App extends Component {
 
           <main className="main">
               <ArticleList content={content} actions={this.props.pageActions} />
-              <ArticleAdd actionAdd = {this.props.pageActions.AddPost} />
           </main>
         </div>
     )

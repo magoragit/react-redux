@@ -10,7 +10,6 @@ export default class Article extends Component {
     render() {
 
         const item = this.props.item;
-        const deletePost = this.props.delete;
 
         return (
             <li className="content-item">

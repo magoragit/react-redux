@@ -40,7 +40,7 @@ export default class Article extends Component {
                    <textarea name="body" className="form-control" value={this.state.body} onChange={this.actionChangeBody.bind(this)} placeholder="text of new article"></textarea>
                </div>
 
-               <button type="button" className="btn btn-default" onClick={this. actionPostArticle.bind(this)}>Add post</button>
+               <button type="button" className="btn btn-default" onClick={this. actionPostArticle.bind(this)} style={{"margin-top": "20px"}}>Add post</button>
 
            </form>
         )
