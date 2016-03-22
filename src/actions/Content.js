@@ -15,3 +15,21 @@ export function AddPost(item) {
     }
 
 }
+
+export function GetPost(id) {
+
+    return {
+        type: 'GET_POST',
+        payload: id
+    }
+
+}
+
+export function GetPosts() {
+
+    return {
+        type: 'ADD_POST',
+        payload: null
+    }
+
+}

@@ -8,7 +8,7 @@ export default class Logotype extends Component {
         return (
             <div className="header-logotype">
                 <Link to="/">
-                    <img src="https://magora-systems.com/public/img/layout/logo.png" alt=""/>
+                    <img src="" alt="Logotype"/>
                 </Link>
             </div>
         )

@@ -15,13 +15,13 @@ class AppArticle extends Component {
     constructor(props) {
         super(props);
 
-        // id of current id
-        console.log(props.params.articleId);
-
         this.state = {
-            content : {}
+            id: props.params.articleId
         }
+    }
 
+    componentWillMount(props) {
+        this.props.pageActions.GetPost(this.state.id);
     }
 
     render() {
@@ -37,7 +37,7 @@ class AppArticle extends Component {
                 </header>
 
                 <main className="main">
-                    <Article item={this.state.content} delete={this.props.DeletePost} />
+                    <Article item={this.props.content.currentArticle} delete={this.props.DeletePost} />
                 </main>
             </div>
         )
