@@ -1,0 +1,26 @@
+{
+  "name": "react-starterify",
+  "description": "React JS application skeleton using Browserify and other awesome tools",
+  "main": "app.js",
+  "authors": [
+    "Maurizio Mangione"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "gulp",
+    "react",
+    "browserify",
+    "seed",
+    "boilerplate",
+    "kickstarter",
+    "ES6",
+    "ES2015",
+    "babel",
+    "ava"
+  ],
+  "homepage": "https://github.com/Magora-Systems-Frontend/react-kit",
+  "moduleType": [],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

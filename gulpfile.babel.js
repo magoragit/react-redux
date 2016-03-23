@@ -22,12 +22,16 @@ import stylus from 'gulp-stylus';
 const paths = {
   bundle: 'app.js',
   srcJsx: 'src/Index.js',
+  vendorCss: [
+    "bower_components/bootstrap/dist/css/bootstrap.min.css"
+  ],
   srcCss: 'src/**/*.styl',
   srcImg: 'src/images/**',
   srcLint: ['src/**/*.js', 'test/**/*.js'],
   dist: 'dist',
   distJs: 'dist/js',
   distCss: 'css/style.css',
+  distVendorCss: 'css/vendor.css',
   distImg: 'dist/images',
   distDeploy: './dist/**/*'
 };
@@ -102,6 +106,13 @@ gulp.task('styles', () => {
   .pipe(reload({stream: true}));
 });
 
+gulp.task('vendorCss', () => {
+
+  gulp.src(paths.vendorCss)
+      .pipe(concat(paths.distVendorCss))
+      .pipe(gulp.dest(paths.dist));
+});
+
 gulp.task('htmlReplace', () => {
   gulp.src('index.html')
   .pipe(htmlReplace({css: 'styles/main.css', js: 'js/app.js'}))
@@ -130,7 +141,7 @@ gulp.task('watchTask', () => {
 });
 
 gulp.task('watch', cb => {
-  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'styles', 'lint', 'images'], cb);
+  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'vendorCss', 'styles', 'lint', 'images'], cb);
 });
 
 gulp.task('build', cb => {
