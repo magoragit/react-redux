@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import User from '../components/User.js';
 import Logotype from '../components/Logotype.js';
 
-export default class Article extends Component {
+class Article extends Component {
 
     render() {
 
@@ -18,3 +18,4 @@ export default class Article extends Component {
         )
     }
 }
+

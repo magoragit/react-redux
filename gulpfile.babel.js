@@ -18,6 +18,7 @@ import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import runSequence from 'run-sequence';
 import stylus from 'gulp-stylus';
+import flatten from 'gulp-flatten';
 
 const paths = {
   bundle: 'app.js',
@@ -28,11 +29,13 @@ const paths = {
   srcCss: 'src/**/*.styl',
   srcImg: 'src/images/**',
   srcLint: ['src/**/*.js', 'test/**/*.js'],
+  srcLocalization: ['src/**/locale/eng/*.json'],
   dist: 'dist',
   distJs: 'dist/js',
   distCss: 'css/style.css',
   distVendorCss: 'css/vendor.css',
   distImg: 'dist/images',
+  distLocalization: 'dist/locales/eng',
   distDeploy: './dist/**/*'
 };
 
@@ -129,6 +132,12 @@ gulp.task('images', () => {
     .pipe(gulp.dest(paths.distImg));
 });
 
+gulp.task('localization', () => {
+  gulp.src(paths.srcLocalization)
+      .pipe(flatten())
+      .pipe(gulp.dest(paths.distLocalization));
+});
+
 gulp.task('lint', () => {
   gulp.src(paths.srcLint)
   .pipe(eslint())
@@ -141,10 +150,10 @@ gulp.task('watchTask', () => {
 });
 
 gulp.task('watch', cb => {
-  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'vendorCss', 'styles', 'lint', 'images'], cb);
+  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'localization', 'vendorCss', 'styles', 'lint', 'images'], cb);
 });
 
 gulp.task('build', cb => {
   process.env.NODE_ENV = 'production';
-  runSequence('clean', ['browserify', 'styles', 'htmlReplace', 'images'], cb);
+  runSequence('clean', ['browserify', 'styles', 'localization', 'vendorCss', 'htmlReplace', 'images'], cb);
 });
