@@ -5,9 +5,9 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import configureStore from './store/configureStore'
-import App from './containers/App'
-import AppArticle from './containers/AppArticle'
-import AppNewPost from './containers/AppNewPost'
+import App from './pages/App'
+import AppArticle from './pages/AppArticle'
+import AppNewPost from './pages/AppNewPost'
 
 window.React = React;
 

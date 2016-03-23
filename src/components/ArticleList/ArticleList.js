@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // components
-import Article from './Article.js';
+import Article from './../Article/Article.js';
 
 export default class ArticleList extends Component {
 

@@ -1,5 +1,4 @@
 import gulp from 'gulp';
-import autoprefixer from 'autoprefixer';
 import browserify from 'browserify';
 import watchify from 'watchify';
 import source from 'vinyl-source-stream';
@@ -7,21 +6,17 @@ import buffer from 'vinyl-buffer';
 import eslint from 'gulp-eslint';
 import babelify from 'babelify';
 import uglify from 'gulp-uglify';
+import autoprefixer from 'gulp-autoprefixer';
+import concat from 'gulp-concat';
 import rimraf from 'rimraf';
 import notify from 'gulp-notify';
 import browserSync, { reload } from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
-import postcss from 'gulp-postcss';
-import rename from 'gulp-rename';
-import nested from 'postcss-nested';
-import vars from 'postcss-simple-vars';
-import extend from 'postcss-simple-extend';
 import cssnano from 'cssnano';
 import htmlReplace from 'gulp-html-replace';
 import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import runSequence from 'run-sequence';
-import ghPages from 'gulp-gh-pages';
 import stylus from 'gulp-stylus';
 
 const paths = {
@@ -32,6 +27,7 @@ const paths = {
   srcLint: ['src/**/*.js', 'test/**/*.js'],
   dist: 'dist',
   distJs: 'dist/js',
+  distCss: 'css/style.css',
   distImg: 'dist/images',
   distDeploy: './dist/**/*'
 };
@@ -89,6 +85,19 @@ gulp.task('browserify', () => {
 gulp.task('styles', () => {
   gulp.src(paths.srcCss)
   .pipe(stylus())
+  .pipe(autoprefixer({
+    browsers: [ 'ie >= 10',
+      'ie_mob >= 10',
+      'ff >= 29',
+      'chrome >= 34',
+      'safari >= 6',
+      'opera >= 23',
+      'ios >= 7',
+      'android >= 4.4',
+      'bb >= 10'],
+    cascade: true
+  }))
+  .pipe(concat(paths.distCss))
   .pipe(gulp.dest(paths.dist))
   .pipe(reload({stream: true}));
 });
@@ -118,11 +127,6 @@ gulp.task('lint', () => {
 gulp.task('watchTask', () => {
   gulp.watch(paths.srcCss, ['styles']);
   gulp.watch(paths.srcJsx, ['lint']);
-});
-
-gulp.task('deploy', function() {
-  return gulp.src(paths.distDeploy)
-    .pipe(ghPages());
 });
 
 gulp.task('watch', cb => {

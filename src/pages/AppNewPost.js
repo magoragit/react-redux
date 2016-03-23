@@ -6,9 +6,9 @@ import * as userActions from '../actions/User'
 
 
 // import Component's here
-import User from '../components/User.js';
-import Logotype from '../components/Logotype.js';
-import ArticleAdd from '../components/ArticleAdd.js';
+import User from '../components/Header/User/User.js';
+import Logotype from '../components/Header/Logotype/Logotype.js';
+import ArticleAdd from '../components/ArticleAdd/ArticleAdd.js';
 
 class AppArticle extends Component {
 
