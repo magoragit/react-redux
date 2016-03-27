@@ -1,10 +1,6 @@
 const initialState = {
     user: {
-        auth: false,
-        data: {
-            name: "Borisov Semen",
-            age: "19"
-        }
+        auth: false
     }
 };
 

@@ -1,31 +1,51 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as pageActions from '../actions/Content'
-import * as userActions from '../actions/User'
+import { Link } from 'react-router'
 
+import * as popupActions from '../actions/popup'
 
 // import Component's here
-import User from '../components/Header/User/User.js';
-import Logotype from '../components/Header/Logotype/Logotype.js';
-import ArticleList from '../components/ArticleList/ArticleList.js';
+import Popup from '../components/Popup/popup.js';
 
 class App extends Component {
+
+  constructor(props) {
+      super(props);
+
+      this.props = props;
+      this.actionSignIn = this.actionSignIn.bind(this);
+      this.actionSignOut = this.actionSignOut.bind(this);
+  }
+
+  actionSignIn() {
+      this.props.popupActions.open("Login");
+  }
+
+  actionSignOut() {
+    this.props.popupActions.open("Logout");
+  }
+
   render() {
 
-    const { user } = this.props.user;
-    const { content } = this.props.content;
+    const popupStore = this.props.popup;
+
 
     return (
-        <div>
-          <header className="header clearfix">
-              <Logotype />
-              <User user={user} userActions = {this.props.userActions} />
-          </header>
+        <div className="container">
+            <header>
+                <a onClick = {this.actionSignIn} style = {{"marginRight": "20px"}}>
+                    Sign in
+                </a>
 
-          <main className="main">
-              <ArticleList content={content} actions={this.props.pageActions} />
-          </main>
+                <a onClick = {this.actionSignOut}>
+                    Sign out
+                </a>
+            </header>
+
+            <Link to="/movies"> Movies </Link>
+
+            <Popup actions = {this.props.popupActions} popup = {popupStore} />
         </div>
     )
   }
@@ -34,18 +54,15 @@ class App extends Component {
 
 function mapStateToProps (state) {
   return {
-    user: state.user,
-    content: state.content
+    popup: state.popup
   }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        pageActions: bindActionCreators(pageActions, dispatch),
-        userActions: bindActionCreators(userActions, dispatch)
+        popupActions: bindActionCreators(popupActions, dispatch)
     }
 }
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

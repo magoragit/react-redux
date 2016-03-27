@@ -15,7 +15,7 @@ i18n
         defaultNS: 'common',
         fallbackLng: 'eng',
 
-        debug: true,
+        debug: false,
 
         interpolation: {
             escapeValue: false // not needed for react!!

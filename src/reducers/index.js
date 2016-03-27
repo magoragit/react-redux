@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import content from './content'
 import user from './user'
+import popup from './popup'
 
 export default combineReducers({
-    content,
-    user
+    user,
+    popup
 });

@@ -1,4 +1,4 @@
-export function LogIn() {
+export function logIn() {
 
     return {
         type: 'LOG_IN',
@@ -7,7 +7,7 @@ export function LogIn() {
 
 }
 
-export function LogOut() {
+export function logOut() {
 
     return {
         type: 'LOG_OUT',
