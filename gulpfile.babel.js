@@ -29,13 +29,15 @@ const paths = {
   srcCss: 'src/**/*.styl',
   srcImg: 'src/images/**',
   srcLint: ['src/**/*.js', 'test/**/*.js'],
-  srcLocalization: ['src/**/locale/eng/*.json'],
+  srcLocalizationEng: ['src/**/locale/eng/*.json'],
+  srcLocalizationRu: ['src/**/locale/ru/*.json'],
   dist: 'dist',
   distJs: 'dist/js',
   distCss: 'css/style.css',
   distVendorCss: 'css/vendor.css',
   distImg: 'dist/images',
-  distLocalization: 'dist/locales/eng',
+  distLocalizationEng: 'dist/locales/eng/',
+  distLocalizationRu: 'dist/locales/ru/',
   distDeploy: './dist/**/*'
 };
 
@@ -133,9 +135,13 @@ gulp.task('images', () => {
 });
 
 gulp.task('localization', () => {
-  gulp.src(paths.srcLocalization)
+  gulp.src(paths.srcLocalizationEng)
       .pipe(flatten())
-      .pipe(gulp.dest(paths.distLocalization));
+      .pipe(gulp.dest(paths.distLocalizationEng));
+
+  gulp.src(paths.srcLocalizationRu)
+      .pipe(flatten())
+      .pipe(gulp.dest(paths.distLocalizationRu));
 });
 
 gulp.task('lint', () => {

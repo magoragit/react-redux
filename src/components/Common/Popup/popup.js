@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 // He's my components
-import Login from '../Login/login.js';
-import Logout from '../Logout/logout.js';
+import Login from './Login/login.js';
+import Logout from './Logout/logout.js';
 
 class DefaultPopup extends Component {
     constructor(props) {
@@ -37,19 +37,14 @@ class Popup extends Component {
     setBodyPopup(){
         var newCase = this.props.popup.content;
 
-        console.log(newCase);
-
         switch (newCase) {
             case 'Login':
-                console.log("40");
                 return (<Login />);
                 break;
             case 'Logout':
-                console.log("44");
                 return (<Logout />);
                 break;
             default:
-                console.log("48");
                 return (<DefaultPopup />);
                 break;
         }

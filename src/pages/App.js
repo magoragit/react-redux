@@ -4,49 +4,47 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
 import * as popupActions from '../actions/popup'
+import * as i18nActions from '../actions/i18n'
 
 // import Component's here
-import Popup from '../components/Popup/popup.js';
+import Popup from '../components/Common/Popup/popup.js';
+import Header from '../components/Common/Header/header.js';
+import Footer from '../components/Common/Footer/footer.js';
+import Lang from '../components/Common/i18n/i18n.js';
 
+// Languages
+import { I18nextProvider } from 'react-i18next';
 class App extends Component {
 
   constructor(props) {
       super(props);
 
       this.props = props;
-      this.actionSignIn = this.actionSignIn.bind(this);
-      this.actionSignOut = this.actionSignOut.bind(this);
-  }
-
-  actionSignIn() {
-      this.props.popupActions.open("Login");
-  }
-
-  actionSignOut() {
-    this.props.popupActions.open("Logout");
   }
 
   render() {
 
     const popupStore = this.props.popup;
-
+    const i18nStore = this.props.i18n;
 
     return (
-        <div className="container">
-            <header>
-                <a onClick = {this.actionSignIn} style = {{"marginRight": "20px"}}>
-                    Sign in
-                </a>
+        <I18nextProvider i18n={  i18nStore.i18n }>
+            <div>
+                <Header popupActions = {this.props.popupActions} />
 
-                <a onClick = {this.actionSignOut}>
-                    Sign out
-                </a>
-            </header>
+                <main className="main">
+                    <div className="container">
+                        {this.props.children}
+                    </div>
+                </main>
 
-            <Link to="/movies"> Movies </Link>
+                <Footer>
+                    <Lang  actions = {this.props.i18nActions} />
+                </Footer>
 
-            <Popup actions = {this.props.popupActions} popup = {popupStore} />
-        </div>
+                <Popup actions = {this.props.popupActions} popup = {popupStore} />
+            </div>
+        </I18nextProvider>
     )
   }
 }
@@ -54,13 +52,15 @@ class App extends Component {
 
 function mapStateToProps (state) {
   return {
-    popup: state.popup
+    popup: state.popup,
+    i18n: state.i18n
   }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        popupActions: bindActionCreators(popupActions, dispatch)
+        popupActions: bindActionCreators(popupActions, dispatch),
+        i18nActions: bindActionCreators(i18nActions, dispatch)
     }
 }
 

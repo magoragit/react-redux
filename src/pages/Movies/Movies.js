@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as popupActions from '../actions/popup'
+import * as popupActions from '../../actions/popup'
 
 // import Component's here
-import Popup from '../components/Popup/popup.js';
+import Popup from '../../components/Common/Popup/popup.js';
 
 class Movies extends Component {
 
@@ -21,7 +21,7 @@ class Movies extends Component {
     const popupStore = this.props.popup;
 
     return (
-        <div className="container">
+        <div>
            Here's our movies
         </div>
     )
