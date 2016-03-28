@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import user from './user'
 import popup from './popup'
+import movies from './movies'
 import i18n from './i18n'
 
 export default combineReducers({
-    user,
     popup,
-    i18n
+    i18n,
+    movies
 });

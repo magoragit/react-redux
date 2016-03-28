@@ -9,6 +9,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory'
 // Pages
 import App from './pages/App'
 import Movies from './pages/Movies/Movies'
+import Movie from './pages/Movie/Movie'
 
 window.React = React;
 
@@ -20,6 +21,7 @@ render(
             <Router history={history}>
                 <Route path="/" component = {App} >
                     <Route path="movies" component={Movies} />
+                    <Route path="movies/:id" component={Movie} />
                 </Route>
             </Router>
     </Provider>,

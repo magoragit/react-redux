@@ -2,20 +2,17 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-// import Component's here
-import MoviesList from '../../components/Movies/MoviesList/moviesList.js';
-
 // import Actions
 import * as moviesActions from '../../actions/movies';
 
-class Movies extends Component {
+class Movie extends Component {
 
   constructor(props) {
       super(props);
       this.props = props;
-      this.props.moviesActions.getAll();
-  }
 
+      this.props.moviesActions.getOne(this.props.params.id);
+  }
 
   render() {
 
@@ -24,10 +21,14 @@ class Movies extends Component {
     return (
         <div>
             <h1>
-                All movies
+                {moviesStore.movie.title}
             </h1>
 
-           <MoviesList movies = {moviesStore.content} />
+            <img src= {moviesStore.movie.poster} style={{"float": "left"}}/>
+
+            <p>
+                {moviesStore.movie.plot}
+            </p>
         </div>
     )
   }
@@ -47,4 +48,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Movies)
+export default connect(mapStateToProps, mapDispatchToProps)(Movie)

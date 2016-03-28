@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
-import * as popupActions from '../actions/popup'
-import * as i18nActions from '../actions/i18n'
+import * as popupActions from '../actions/common/popup'
+import * as i18nActions from '../actions/common/i18n'
 
 // import Component's here
 import Popup from '../components/Common/Popup/popup.js';
